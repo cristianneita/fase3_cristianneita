@@ -1,0 +1,203 @@
+USE [master]
+GO
+/****** Object:  Database [fase3]    Script Date: 13/04/2023 12:54:53 p. m. ******/
+CREATE DATABASE [fase3]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'fase3', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\fase3.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'fase3_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\fase3_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [fase3] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [fase3].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [fase3] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [fase3] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [fase3] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [fase3] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [fase3] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [fase3] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [fase3] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [fase3] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [fase3] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [fase3] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [fase3] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [fase3] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [fase3] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [fase3] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [fase3] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [fase3] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [fase3] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [fase3] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [fase3] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [fase3] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [fase3] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [fase3] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [fase3] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [fase3] SET  MULTI_USER 
+GO
+ALTER DATABASE [fase3] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [fase3] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [fase3] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [fase3] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [fase3] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [fase3] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [fase3] SET QUERY_STORE = OFF
+GO
+USE [fase3]
+GO
+/****** Object:  Table [dbo].[persona]    Script Date: 13/04/2023 12:54:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[persona](
+	[id] [int] NULL,
+	[nombres] [nvarchar](50) NULL,
+	[apellidos] [nvarchar](50) NULL,
+	[nacionalidad] [nvarchar](20) NULL,
+	[estadoCivil] [nvarchar](15) NULL,
+	[email] [nvarchar](30) NULL,
+	[edad] [nvarchar](3) NULL,
+	[programa] [nvarchar](25) NULL,
+	[pass] [nvarchar](15) NULL
+) ON [PRIMARY]
+GO
+INSERT [dbo].[persona] ([id], [nombres], [apellidos], [nacionalidad], [estadoCivil], [email], [edad], [programa], [pass]) VALUES (1, N'Cristian', N'Neita', N'Colombia', N'Soltero', N'n@gmail.com', N'21', N'Sistemas', N'123')
+GO
+INSERT [dbo].[persona] ([id], [nombres], [apellidos], [nacionalidad], [estadoCivil], [email], [edad], [programa], [pass]) VALUES (2, N'Pepe', N'perez', N'Colombia', N'casado', N'pepe@gmail.com', N'21', N'industrial', N'123')
+GO
+INSERT [dbo].[persona] ([id], [nombres], [apellidos], [nacionalidad], [estadoCivil], [email], [edad], [programa], [pass]) VALUES (3, N'Rosa', N'Aguillon', N'Colombia', N'Soltera', N'rosa@gmail.com', N'21', N'Arquitectura', N'123')
+GO
+/****** Object:  StoredProcedure [dbo].[SP_BUSCAR_PERSONA]    Script Date: 13/04/2023 12:54:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_BUSCAR_PERSONA]
+
+AS 
+BEGIN 
+
+SELECT * FROM PERSONA
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_BUSCAR_PERSONAR]    Script Date: 13/04/2023 12:54:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_BUSCAR_PERSONAR]
+
+@ID INTEGER
+
+AS
+BEGIN 
+
+SELECT * FROM persona WHERE id=@ID
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[SP_ELIMINAR_PERSONA]    Script Date: 13/04/2023 12:54:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ELIMINAR_PERSONA]
+@ID INTEGER
+
+AS 
+BEGIN 
+
+DELETE FROM persona WHERE id=@ID
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_INSERTAR_PERSONAR]    Script Date: 13/04/2023 12:54:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_INSERTAR_PERSONAR]
+
+@ID INTEGER,
+@NOMBRES NVARCHAR (50),
+@APELLIDOS NVARCHAR (50),
+@NACIONALIDAD NVARCHAR (20),
+@ESTADOCIVIL NVARCHAR (15),
+@EMAIL NVARCHAR (30),
+@EDAD NVARCHAR (3),
+@PROGRAMA NVARCHAR (25),
+@PASS NVARCHAR (15)
+
+AS 
+BEGIN 
+
+INSERT persona (id, nombres, apellidos, nacionalidad, estadoCivil, email, edad, programa, pass) VALUES (@ID, @NOMBRES, @APELLIDOS, @NACIONALIDAD,
+@ESTADOCIVIL, @EMAIL, @EDAD, @PROGRAMA, @PASS)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_MODIFICAR_PERSONA]    Script Date: 13/04/2023 12:54:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_MODIFICAR_PERSONA]
+
+@ID INTEGER,
+@NOMBRES NVARCHAR (50),
+@APELLIDOS NVARCHAR (50),
+@NACIONALIDAD NVARCHAR (20),
+@ESTADOCIVIL NVARCHAR (15),
+@EMAIL NVARCHAR (30),
+@EDAD NVARCHAR (3),
+@PROGRAMA NVARCHAR (25),
+@PASS NVARCHAR (15)
+
+AS 
+BEGIN
+
+UPDATE persona SET nombres=@NOMBRES, apellidos=@APELLIDOS, nacionalidad=@NACIONALIDAD, estadoCivil=@ESTADOCIVIL, email=@EMAIL, edad=@EDAD,
+programa=@PROGRAMA, pass=@PASS WHERE ID=@ID
+
+END
+GO
+USE [master]
+GO
+ALTER DATABASE [fase3] SET  READ_WRITE 
+GO
