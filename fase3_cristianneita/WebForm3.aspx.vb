@@ -7,9 +7,6 @@ Imports DAL
 Public Class WebForm3
     Inherits System.Web.UI.Page
     Dim NewPersona As New LayerEntity.Class1
-    Dim BuscarCliente As New DAL.DALPersona
-    Dim EliminarCliente As New DAL.DALPersona
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
     End Sub
