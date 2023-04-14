@@ -79,4 +79,8 @@ Public Class WebForm2
     Protected Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         Response.Redirect("Login.aspx")
     End Sub
+
+    Protected Sub btnListado_Click(sender As Object, e As EventArgs) Handles btnListado.Click
+        Response.Redirect("WebForm4.aspx")
+    End Sub
 End Class

@@ -39,6 +39,11 @@
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-outline-light w-100" />
                     </div>
                 </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <asp:Button ID="btnListado" runat="server" Text="Ver listado de usuarios" class="btn btn-success w-100" />
+                    </div>
+                </div>
                 <!-- resultado de busqueda-->
                 <asp:Label ID="lblRespuesta" runat="server" Text="Resultado de Busqueda" class="form-label fs-3 mt-5" Visible="false"></asp:Label>
                 <!-- 2x2-->

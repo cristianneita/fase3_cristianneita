@@ -95,4 +95,17 @@ Public Class DALPersona
             Return False
         End If
     End Function
+
+
+    Public Function ListarPersonas() As DataTable
+        Dim cnn As New SqlConnection(DAL.Conexion.cadcon)
+        Dim cmd As New SqlCommand("SP_BUSCAR_PERSONA", cnn)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        Dim adapter As New SqlDataAdapter(cmd)
+        Dim dataTable As New DataTable()
+        adapter.Fill(dataTable)
+
+        Return dataTable
+    End Function
 End Class

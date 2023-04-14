@@ -58,6 +58,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -159,6 +160,7 @@
     <Content Include="Login.aspx" />
     <Content Include="WebForm2.aspx" />
     <Content Include="WebForm3.aspx" />
+    <Content Include="WebForm4.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -286,6 +288,13 @@
     <Compile Include="WebForm3.aspx.vb">
       <DependentUpon>WebForm3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm4.aspx.designer.vb">
+      <DependentUpon>WebForm4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm4.aspx.vb">
+      <DependentUpon>WebForm4.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
